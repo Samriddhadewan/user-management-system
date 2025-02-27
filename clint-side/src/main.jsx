@@ -17,7 +17,8 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/",
-        element: <Users ></Users>
+        element: <Users ></Users>,
+        loader: ()=> fetch(`http://localhost:5000/users`)
       },
       {
         path: "/newUser",

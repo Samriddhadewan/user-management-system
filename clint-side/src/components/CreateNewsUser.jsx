@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaAngleLeft } from "react-icons/fa";
 import {  Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -35,8 +36,12 @@ const CreateNewsUser = () => {
 };
 
   return (
-    <div className="py-2">
-        <Link to="/" className="underline text-blue-700">All User</Link>
+    <div className="py-2 mt-10">
+        <Link to="/" className="underline text-blue-700 ">
+        <div className="flex items-center">
+        <FaAngleLeft />All User
+        </div>
+        </Link>
         <div className="flex justify-center items-center mt-20">
       <div className="card bg-base-100 w-full p-8 max-w-xl shrink-0 shadow-2xl">
         <div className="text-center">
