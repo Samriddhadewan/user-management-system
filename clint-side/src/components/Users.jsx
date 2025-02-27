@@ -7,18 +7,18 @@ const Users = () => {
   return (
     <div className=" mt-20">
       <div>
-      <Link className="text-blue-600 font-normal text-xl" to="/newUser">
-      <div className="flex items-center gap-1  mb-7">
+      <Link className="" to="/newUser">
+      <button className="flex text-blue-600 text-xl btn items-center gap-1  mb-7">
       NewUser <FaRegUser />
-      </div>
+      </button>
       </Link>
 
       <div className="">
       <div className="overflow-x-auto">
-  <table className="table">
+  <table className="table text-center">
     {/* head */}
-    <thead className="bg-[#2B1B42] text-white">
-      <tr>
+    <thead className="bg-[#2B1B42]  text-white">
+      <tr className="">
         <th></th>
         <th>Name</th>
         <th>Email</th>
