@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {  Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CreateNewsUser = () => {
   const [gender, setGender] = useState("male");
@@ -6,13 +8,36 @@ const CreateNewsUser = () => {
   const handleCreateUser = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password,  gender, status)
+
+    const User = {name,email, gender, status};
+
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(User)
+    })
+    .then(res=> res.json())
+    .then(data=> {
+        console.log(data);
+        if(data.insertedId){
+            Swal.fire({
+                title: "Drag me!",
+                icon: "success",
+                draggable: true
+              });
+        }
+        form.reset()
+    })
 };
 
   return (
-    <div className="flex justify-center items-center mt-20">
+    <div className="py-2">
+        <Link to="/" className="underline text-blue-700">All User</Link>
+        <div className="flex justify-center items-center mt-20">
       <div className="card bg-base-100 w-full p-8 max-w-xl shrink-0 shadow-2xl">
         <div className="text-center">
           <h1 className="text-3xl font-semibold mb-2">New User</h1>
@@ -23,26 +48,26 @@ const CreateNewsUser = () => {
         <form onSubmit={handleCreateUser} className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">Name</span>
             </label>{" "}
             <br />
             <input
-              type="email"
-              placeholder="email"
-              name="email"
+              type="text"
+              placeholder="Enter name"
+              name="name"
               className="input input-bordered w-full"
               required
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text">Email</span>
             </label>{" "}
             <br />
             <input
-              type="password"
-              name="password"
-              placeholder="password"
+              type="email"
+              name="email"
+              placeholder="Enter Email Address"
               className="input input-bordered w-full"
               required
             />
@@ -109,6 +134,7 @@ const CreateNewsUser = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
